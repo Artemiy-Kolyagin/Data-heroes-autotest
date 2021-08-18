@@ -4,16 +4,15 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import java.util.Set;
 
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selectors.withText;
 import static com.codeborne.selenide.Selenide.*;
-import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
+
 
 public class DataHeroesTest {
     @BeforeEach
-    void autorization(){
+    void autorization() {
         open("https://app.dataheroes.pro/landing");
         $(".v-toolbar__content .v-btn__content").click();
         switchTo().window("Вход в сервис Data heroes");
@@ -25,18 +24,20 @@ public class DataHeroesTest {
     }
 
     @AfterEach
-    void closeWindow(){
+    void closeWindow() {
         Selenide.closeWindow();
     }
 
-    @Test//проверка работы справки на главном экране
-    void shouldHelper(){
+    @Test
+//проверка работы справки на главном экране
+    void shouldHelper() {
         $(".mdi-help-circle").click();
         $(withText("Проект — это ваш бизнес")).shouldBe(Condition.visible);
     }
 
-    @Test//изменение прав доступа
-    void shouldChangingAccess(){
+    @Test
+//изменение прав доступа
+    void shouldChangingAccess() {
         $(byText("Тестовый проект 1")).click();
         $(".v-data-table__checkbox").click();
         $(byText("Назначить права")).click();
@@ -55,8 +56,9 @@ public class DataHeroesTest {
 //        $(byText("email должен быть валидным")).shouldBe(Condition.visible);
 //    }
 
-    @Test//выход из аккаунта
-    void shouldExit(){
+    @Test
+//выход из аккаунта
+    void shouldExit() {
         $("[class=\"v-avatar mx-4\"]").click();
         $(byText("Выйти")).click();
         $(byText("Войти")).shouldBe(Condition.visible);
